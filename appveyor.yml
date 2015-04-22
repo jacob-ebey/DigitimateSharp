@@ -13,7 +13,7 @@ build:
 
 deploy:
     provider: GitHub
-    artifact:/.*\.nupkg/
+    artifact: /.*\.nupkg/
     draft: true
     prerelease: true
     on:
