@@ -18,7 +18,7 @@ build:
 
 after_build:
     - cd DigitimateSharp
-    - nuget pack DigitimateSharp.csproj
+    - nuget pack DigitimateSharp.csproj -Build -Symbols -Properties Configuration=Release
 
 artifacts:
     - path: DigitimateSharp\*.nupkg
