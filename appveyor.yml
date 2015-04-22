@@ -16,13 +16,8 @@ before_build:
 build:
     project: DigitimateSharp\DigitimateSharp.csproj
 
-deploy:
-    provider: GitHub
-    artifact: /.*\.nupkg/
-    draft: true
-    prerelease: true
-    on:
-        branch: master
-        appveyor_repo_tag: false
-    auth_token:
-        secure: SaAWccjRLZHFX/3wGSX8sDSQbav0bsNPl4+4cAWUEiJe4qmKc9Nj/PCTQlHSnUz5
+after_build:
+    - nuget pack DigitimateSharp\DigitimateSharp.csproj -OutputDirectory out
+
+artifacts:
+    - path: out\*.nupkg
