@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DigitimateSharp</id>
+    <version>$version$</version>
+    <title>DigitimateSharp</title>
+    <authors>Jacob Ebey</authors>
+    <owners>Jacob Ebey</owners>
+    <licenseUrl>https://raw.githubusercontent.com/jacob-ebey/DigitimateSharp/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/jacob-ebey/DigitimateSharp</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C# client for digitimate (https://github.com/digitimate/digitimate).</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Client Digitimate Digit Mate</tags>
+  </metadata>
+</package>
