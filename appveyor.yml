@@ -18,7 +18,6 @@ build:
 
 after_build:
     - cd DigitimateSharp
-    - nuget spec
     - nuget pack DigitimateSharp.csproj
 
 artifacts:
