@@ -1,0 +1,21 @@
+version: 0.0.{build}
+
+assembly_info:
+    patch: true
+    file: DigitimateSharp\Properties\AssemblyInfo.cs
+    assembly_version: '{version}'
+    assembly_file_version: '{version}'
+    assembly_informational_version: '{version}-alpha'
+
+build:
+    project: DigitimateSharp\DigitimateSharp.csproj
+    include_nuget_references: true
+
+deploy:
+    provider: GitHub
+    artifact:/.*\.nupkg/
+    draft: true
+    prerelease: true
+    on:
+        branch: master
+        appveyor_repo_tag: false
