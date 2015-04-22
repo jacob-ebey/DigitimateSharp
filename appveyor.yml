@@ -20,4 +20,4 @@ after_build:
     - nuget pack DigitimateSharp\DigitimateSharp.csproj
 
 artifacts:
-    - path: *.nupkg
+    - path: \*.nupkg
