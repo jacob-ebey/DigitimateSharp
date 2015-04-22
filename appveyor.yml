@@ -17,7 +17,9 @@ build:
     project: DigitimateSharp\DigitimateSharp.csproj
 
 after_build:
-    - nuget pack DigitimateSharp\DigitimateSharp.csproj
+    - cd DigitimateSharp
+    - nuget spec
+    - nuget pack DigitimateSharp.csproj
 
 artifacts:
     - path: \*.nupkg
