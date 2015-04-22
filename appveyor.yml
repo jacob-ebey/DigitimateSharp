@@ -15,11 +15,11 @@ before_build:
 
 build:
     project: DigitimateSharp\DigitimateSharp.csproj
+    publish_nuget_symbols: true
 
 after_build:
     - cd DigitimateSharp
     - nuget pack DigitimateSharp.csproj -Build -Symbols -Properties Configuration=Release
-    - 'nuget push DigitimateSharp\DigitimateSharp.{version}.0.nupkg -ApiKey  becc3a66-c382-496b-9f43-bedad95d9206'
 
 artifacts:
     - path: DigitimateSharp\*.nupkg
