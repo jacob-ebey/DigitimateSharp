@@ -48,7 +48,7 @@ namespace DigitimateSharp
         /// Send a code to the user that they will use to validate.
         /// </summary>
         /// <param name="mobileNumber">The user's mobile number.</param>
-        /// <returns></returns>
+        /// <returns>The result of the operation.</returns>
         public async Task<Result> SendCodeAsync(string mobileNumber)
         {
             Dictionary<string, object> options = new Dictionary<string, object>
@@ -65,26 +65,15 @@ namespace DigitimateSharp
             string jsonResult = await client.GetStringAsync(url);
 
             JObject o = JObject.Parse(jsonResult);
-
-            Result result = new Result { Successful = false };
-
-            JToken token = null;
-            if (o.TryGetValue("success", out token))
-            {
-                result.Successful = token.Value<bool>();
-            }
-            if (o.TryGetValue("userMobileNumber", out token))
-            {
-                result.MobileNumber = token.Value<string>();
-            }
-            if (o.TryGetValue("err", out token))
-            {
-                result.ErrorMessage = token.Value<string>();
-            }
-
-            return result;
+            return Result.From(o);
         }
 
+        /// <summary>
+        /// Check the code the user entered VS the one that was sent.
+        /// </summary>
+        /// <param name="mobileNumber">The user's mobile number.</param>
+        /// <param name="code">The code to validate.</param>
+        /// <returns>The result of the operation.</returns>
         public async Task<CheckCodeResult> CheckCodeAsync(string mobileNumber, string code)
         {
             Dictionary<string, object> options = new Dictionary<string, object>
@@ -100,38 +89,18 @@ namespace DigitimateSharp
             string jsonResult = await client.GetStringAsync(url);
 
             JObject o = JObject.Parse(jsonResult);
-
-            CheckCodeResult result = new CheckCodeResult { Successful = false, ValidCode = false };
-
-            JToken token = null;
-            if (o.TryGetValue("success", out token))
-            {
-                result.Successful = token.Value<bool>();
-            }
-            if (o.TryGetValue("validCode", out token))
-            {
-                result.ValidCode = token.Value<bool>();
-            }
-            if (o.TryGetValue("userMobileNumber", out token))
-            {
-                result.MobileNumber = token.Value<string>();
-            }
-            if (o.TryGetValue("err", out token))
-            {
-                result.ErrorMessage = token.Value<string>();
-            }
-
-            return result;
+            return CheckCodeResult.From(o);
         }
 
         /// <summary>
         /// Build a url from the base url with the action and the options specified.
         /// </summary>
+        /// <param name="action">The action to perform. Either `checkCode` or `sendCode`</param>
         /// <param name="options">
         /// A dictionary of option name and the value. The <see cref="System.Object.ToString"/> 
         /// result is what is used as the value.
         /// </param>
-        /// <returns></returns>
+        /// <returns>The url with the options added.</returns>
         protected string BuildUrl(string action, Dictionary<string, object> options)
         {
             string url = BASE_URL + action;
