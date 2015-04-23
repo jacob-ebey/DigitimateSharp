@@ -20,6 +20,13 @@ build:
 after_build:
     - cd DigitimateSharp
     - nuget pack DigitimateSharp.csproj -Build -Symbols -Properties Configuration=Release
+    - ps: >-
+        $nuget = "NuGet.exe"
+        $files = get-childitem . *.nupkg -rec|where-object {!($_.psiscontainer)}
+        foreach($file in $files) {
+            $params = "push " + $file + " becc3a66-c382-496b-9f43-bedad95d9206"
+            invoke-expression "$nuget $params"
+        }
 
 artifacts:
     - path: DigitimateSharp\*.nupkg
