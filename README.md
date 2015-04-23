@@ -23,12 +23,13 @@ async string PromptForCode()
 // Return true if the user recieved, and verified the number sent to their phone.
 async bool ValidatePhone(string mobileNumber)
 {
+  var promptTask = PromptForCode();
   Result sendResult = await validator.SendCodeAsync(mobileNumber);
     
   if (!sendResult.Successful)
     return false;
   
-  string code = await PromptForCode();
+  string code = await promptTask;
   
   if (code == null)
     return false;
