@@ -1,35 +1,23 @@
 version: 0.1.{build}
 
+branches:
+    only:
+        - master
+
 assembly_info:
     patch: true
-    file: DigitimateSharp\Properties\AssemblyInfo.cs
+    file: '**\AssemblyInfo.*'
     assembly_version: '{version}'
     assembly_file_version: '{version}'
-    assembly_informational_version: '{version}-alpha'
+    assembly_informational_version: '{version}'
 
-cache:
-    - packages -> **\packages.config
+cache: packages -> **\packages.config
 
 before_build:
     - nuget restore
 
 build:
-    project: DigitimateSharp\DigitimateSharp.csproj
-    project: DigitimateSharp_Tests\DigitimateSharp_Tests.csproj
-
-after_build:
-    - cd DigitimateSharp
-    - nuget pack DigitimateSharp.csproj -Build -Symbols -Properties Configuration=Release
-    - ps: >-
-        if ($true)
-        {
-            $nuget = "NuGet.exe"
-            $files = get-childitem . *.nupkg -rec|where-object {!($_.psiscontainer)}
-            foreach($file in $files) {
-                $params = "push " + $file + " becc3a66-c382-496b-9f43-bedad95d9206"
-                invoke-expression "$nuget $params"
-            }
-        }
+    verbosity: normal
 
 artifacts:
-    - path: DigitimateSharp\*.nupkg
+    path: DigitimateSharp\*.nupkg
