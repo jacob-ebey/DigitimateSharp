@@ -23,11 +23,11 @@ static Validator validator = new Validator("your.email@example.com", 6, "Custom 
 ...
 
 // A method that asks for the code that was sent to the user.
-async string PromptForCode()
+async Task<string> PromptForCode()
 { ... }
 
 // Return true if the user recieved, and verified the number sent to their phone.
-async bool ValidatePhone(string mobileNumber)
+async Task<bool> ValidatePhone(string mobileNumber)
 {
   var promptTask = PromptForCode();
   Result sendResult = await validator.SendCodeAsync(mobileNumber);
