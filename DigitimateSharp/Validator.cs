@@ -45,6 +45,13 @@ namespace DigitimateSharp
         public string Message { get; private set; }
 
         /// <summary>
+        /// Gets or set if the url that is generated for the validator
+        /// is for use in testing. If this is true SendCodeAsync will
+        /// return an instance of <see cref="DigitimateSharp.TestResult" />.
+        /// </summary>
+        protected bool IsForTesting { get; set; }
+
+        /// <summary>
         /// Send a code to the user that they will use to validate.
         /// </summary>
         /// <param name="mobileNumber">The user's mobile number.</param>
@@ -65,6 +72,10 @@ namespace DigitimateSharp
             string jsonResult = await client.GetStringAsync(url);
 
             JObject o = JObject.Parse(jsonResult);
+
+            if (IsForTesting)
+                return TestResult.From(o);
+
             return Result.From(o);
         }
 
@@ -101,7 +112,7 @@ namespace DigitimateSharp
         /// result is what is used as the value.
         /// </param>
         /// <returns>The url with the options added.</returns>
-        protected string BuildUrl(string action, Dictionary<string, object> options)
+        protected virtual string BuildUrl(string action, Dictionary<string, object> options)
         {
             string url = BASE_URL + action;
 
@@ -115,6 +126,9 @@ namespace DigitimateSharp
                 }
                 
             }
+
+            if (IsForTesting)
+                url += "&__testing__";
 
             return url;
         }
