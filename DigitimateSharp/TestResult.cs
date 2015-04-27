@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace DigitimateSharp
 {
+    /// <summary>
+    /// Test result of DigitimateSharp's SendCodeAsync operation.
+    /// </summary>
     public class TestResult : Result
     {
         /// <summary>
@@ -14,9 +17,13 @@ namespace DigitimateSharp
         /// </summary>
         internal TestResult() { }
 
+        /// <summary>
+        /// The code to validate against. This is usually sent directly 
+        /// to the mobile number and is only avaliable for test runs.
+        /// </summary>
         public string Code { get; internal set; }
 
-        internal static TestResult From(JObject o)
+        internal static new TestResult From(JObject o)
         {
             TestResult result = new TestResult();
 

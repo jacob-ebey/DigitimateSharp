@@ -15,7 +15,7 @@ before_build:
 
 build:
     project: DigitimateSharp\DigitimateSharp.csproj
-    publish_nuget_symbols: true
+    project: DigitimateSharp_Tests\DigitimateSharp_Tests.csproj
 
 after_build:
     - cd DigitimateSharp
