@@ -4,12 +4,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
+using System.Net;
+using System.Net.Mail;
+
 namespace DigitimateSharp
 {
     /// <summary>
     /// A phone validator using Digitmate.
     /// </summary>
-    public class Validator
+    public class Digitimate
     {
         /// <summary>
         /// The base url on which to build
@@ -17,12 +20,12 @@ namespace DigitimateSharp
         const string BASE_URL = "http://digitimate.com/";
 
         /// <summary>
-        /// Initialize a new instance of <see cref="DigitimateSharp.Validator"/>.
+        /// Initialize a new instance of <see cref="DigitimateSharp.Digitimate"/>.
         /// </summary>
         /// <param name="developerEmail">Your company or product e-mail address so we can contact you.</param>
         /// <param name="numberOfDigits">The number of digits in the code to send.</param>
         /// <param name="message">A custom message format for the SMS sent to the user. This defaults to "Code: ".</param>
-        public Validator(string developerEmail, int numberOfDigits = 6, string message = null)
+        public Digitimate(string developerEmail, int numberOfDigits = 6, string message = null)
         {
             DeveloperEmail = developerEmail;
             NumberOfDigits = numberOfDigits;

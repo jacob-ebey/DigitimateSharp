@@ -7,7 +7,7 @@ using DigitimateSharp;
 
 namespace DigitimateSharp_Tests.Helpers
 {
-    class TestValidator : Validator
+    class TestValidator : Digitimate
     {
         public TestValidator(string developerEmail, int numberOfDigits = 6, string message = null)
             : base(developerEmail, numberOfDigits, message) 
