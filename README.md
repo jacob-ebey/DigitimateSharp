@@ -18,7 +18,7 @@ using DigitimateSharp;
 ...
 
 // Create the validator. Would recommend creating in a static scope.
-static Validator validator = new Validator("your.email@example.com", 6, "Custom message, here is your code: ");
+static Digitimate validator = new Digitimate("your.email@example.com", 6, "Custom message, here is your code: ");
 
 ...
 
