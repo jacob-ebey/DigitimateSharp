@@ -2,6 +2,8 @@ DigitimateSharp
 ===============
 A C# client for digitimate (https://github.com/digitimate/digitimate).
 
+View a quick Xamarin.Android tutorial at (https://github.com/jacob-ebey/DigitimateSharp-AndroidExample/wiki/Android-Tutorial) 
+
 [![Build status](https://ci.appveyor.com/api/projects/status/424l99eatqoihkls/branch/master?svg=true)](https://ci.appveyor.com/project/jacob-ebey/digitimatesharp/branch/master)
 
 DigitimateSharp is avaliable on NuGet [https://www.nuget.org/packages/DigitimateSharp](https://www.nuget.org/packages/DigitimateSharp) or the NuGet Package Manager. DigitimateSharp can also be installed by running the folling command in the Package Manager Console
